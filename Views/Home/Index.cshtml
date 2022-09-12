@@ -1,0 +1,69 @@
+﻿@model TransactionViewModel 
+@if(Model.Card != null && Model.Merchant != null)
+{
+    <div>
+        <h5 align="center">**** @Model.GeneratedFor COPY ****</h5>
+        <div>
+            MERCHANT NAME:<br> @Model.Merchant.Name
+            <br>
+            LOCATION:<br> @Model.Merchant.Location
+            <br>
+            TERMINAL ID: @Model.Merchant.TerminalId
+            <hr style="border-top: 3px dashed #bbb;" color="#FFFFFF">
+        </div>
+        <div>
+            <h2 align="center">@Model.Type</h2>
+            STAN: @Model.STAN.ToString("D6")
+            <br>
+            DATE/TIME: @Model.Time.ToString("yyyy-MM-dd hh:mm:ss")
+            <br>
+            <hr style="border-top: 3px dashed #bbb;" color="#FFFFFF">
+            <div style="display: flex; justify-content: space-between;"> 
+                <b> AMOUNT: </b>  
+                <b>@Model.Currency @Model.Amount</b> 
+            </div>
+            <hr style="border-top: 3px dashed #bbb;" color="#FFFFFF">
+        </div>
+        <div>
+            @Model.Card.Type @Model.Card.Issuer 
+            <br>
+            <h5 align="center">
+                <span>@Model.Card.Number.ToString().Substring(0,6)</span>
+                ******
+                <span>@Model.Card.Number.ToString().Substring(12, 4)</span>
+            </h5>
+            <br>
+            @Model.Card.Platform
+            <br>
+            EXPIRY DATE: @Model.Card.ExpiryDate.ToString("MM/yy")
+            <br>
+            AUTHORIZATION CODE: @Model.Card.AuthorizationCode.ToString("D6")
+            <br>
+            @Model.Card.AuthorizationMessage
+            <hr style="border-top: 3px dashed #bbb;" color="#FFFFFF">
+        </div>
+        <div>
+            @if(@Model.Status)
+            {
+                <h2 align="center">TRANSACTION SUCCESSFUL</h2>;
+            }
+            else
+            {
+                <h2 align="center">TRANSACTION DECLINED</h2>;
+            }
+            RESPONSE CODE: @Model.ResponseCode
+            <br>
+            @Model.ResponseMessage
+            <br>
+            AID: @Model.AID
+            <br>
+            RRN: @Model.RRN
+            <br>
+            @Model.Device
+            <br>
+            PTAD: @Model.PTAD
+            <hr style="border-top: 3px dashed #bbb;" color="#FFFFFF">
+        </div>
+    </div>
+
+}
